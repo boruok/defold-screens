@@ -1,0 +1,10 @@
+name: "popup_pause"
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  data: "components {\n"
+  "  id: \"popup_pause\"\n"
+  "  component: \"/gui/popup_pause.gui\"\n"
+  "}\n"
+  ""
+}

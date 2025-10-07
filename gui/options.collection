@@ -1,0 +1,13 @@
+name: "options"
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  data: "components {\n"
+  "  id: \"options\"\n"
+  "  component: \"/gui/options.gui\"\n"
+  "}\n"
+  ""
+  position {
+    x: 1.0
+  }
+}

@@ -1,0 +1,53 @@
+script: "/gui/transition.gui_script"
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  size {
+    x: 1280.0
+    y: 720.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "box"
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+layers {
+  name: "0"
+}
+layers {
+  name: "1"
+}
+layers {
+  name: "2"
+}
+material: "/builtins/materials/gui.material"
+layouts {
+  name: "Landscape"
+}
+layouts {
+  name: "Portrait"
+  nodes {
+    position {
+      x: 360.0
+      y: 640.0
+    }
+    size {
+      x: 720.0
+      y: 1280.0
+    }
+    type: TYPE_BOX
+    id: "box"
+    overridden_fields: 1
+    overridden_fields: 4
+  }
+}
+adjust_reference: ADJUST_REFERENCE_PARENT

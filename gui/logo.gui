@@ -1,0 +1,50 @@
+script: "/gui/logo.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 180.0
+    y: 320.0
+  }
+  size {
+    x: 360.0
+    y: 640.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 128.0
+    y: 128.0
+  }
+  type: TYPE_BOX
+  id: "box"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -88.0
+  }
+  size {
+    x: 128.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Logo"
+  font: "default"
+  id: "text_logo"
+  yanchor: YANCHOR_BOTTOM
+  parent: "root"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

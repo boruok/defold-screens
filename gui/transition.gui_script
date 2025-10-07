@@ -1,0 +1,27 @@
+local MSG_PLAY = hash("play")
+local MSG_DONE = "transition_done"
+local MSG_LAYOUT_CHANGED = hash("layout_changed")
+
+function init(self)
+	self.box = gui.get_node("box")
+	self.prev_alhpa = gui.get_alpha(self.box)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == MSG_PLAY then
+		local to = 0
+		local easing = gui.EASING_OUTQUINT
+		if message.animation == "fade_in" then
+			to = 1
+			easing = gui.EASING_INQUINT
+		end
+		gui.animate(self.box, "color.w", to, easing, 0.25, 0, function()
+			msg.post(sender, MSG_DONE)
+			self.prev_alhpa = to
+		end)
+	elseif message_id == MSG_LAYOUT_CHANGED then
+		if gui.get_color(self.box).w ~= self.prev_alhpa then
+			gui.set_alpha(self.box, self.prev_alhpa)
+		end
+	end
+end

@@ -1,0 +1,10 @@
+name: "logo"
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  data: "components {\n"
+  "  id: \"logo\"\n"
+  "  component: \"/gui/logo.gui\"\n"
+  "}\n"
+  ""
+}

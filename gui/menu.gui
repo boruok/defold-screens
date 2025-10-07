@@ -1,0 +1,118 @@
+script: "/gui/menu.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 180.0
+    y: 320.0
+  }
+  size {
+    x: 360.0
+    y: 640.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -180.0
+    y: 320.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "ANCHOR_TL"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 35.0
+    y: -31.0
+  }
+  size {
+    x: 48.0
+    y: 48.0
+  }
+  type: TYPE_BOX
+  id: "button_x"
+  parent: "ANCHOR_TL"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 92.0
+    y: -31.0
+  }
+  size {
+    x: 48.0
+    y: 48.0
+  }
+  type: TYPE_BOX
+  id: "button_facebook"
+  parent: "ANCHOR_TL"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 180.0
+    y: 320.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "ANCHOR_TR"
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_TOP
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -32.0
+    y: -32.0
+  }
+  size {
+    x: 48.0
+    y: 48.0
+  }
+  type: TYPE_BOX
+  id: "button_options"
+  parent: "ANCHOR_TR"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -245.0
+  }
+  size {
+    x: 128.0
+    y: 48.0
+  }
+  type: TYPE_BOX
+  id: "button_play"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

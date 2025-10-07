@@ -1,0 +1,13 @@
+# tiled
+*.tmx
+*.tiled-session
+# defold
+/.internal
+/build
+builtins
+debugger
+manifest.private.der
+manifest.public.der
+/.editor_settings
+# vscode
+/.vscode

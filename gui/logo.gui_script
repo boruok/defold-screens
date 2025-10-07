@@ -1,0 +1,5 @@
+local screens = require("main.screens")
+
+function init(self)
+	self.timer = timer.delay(1, false, function() screens.show("menu") end)
+end

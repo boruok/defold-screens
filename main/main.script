@@ -1,0 +1,5 @@
+local screens = require("main.screens")
+
+function init(self)
+	screens.show("logo")
+end

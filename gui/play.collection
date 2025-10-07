@@ -1,0 +1,10 @@
+name: "play"
+scale_along_z: 0
+embedded_instances {
+  id: "go"
+  data: "components {\n"
+  "  id: \"play\"\n"
+  "  component: \"/gui/play.gui\"\n"
+  "}\n"
+  ""
+}

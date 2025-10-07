@@ -1,0 +1,44 @@
+[project]
+developer = boruok
+title = defold-screens
+
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 360
+height = 640
+dynamic_orientation = 1
+high_dpi = 1
+
+[android]
+input_method = HiddenInputField
+
+[graphics]
+default_texture_min_filter = nearest
+default_texture_mag_filter = nearest
+
+[input]
+game_binding = /main/main.input_bindingc
+
+[physics]
+debug = 0
+max_collisions = 128
+
+[collection_proxy]
+max_count = 16
+
+[lang]
+path = /localization
+langs = en,ru
+default = en
+
+[saver]
+save_name = island
+autosave_timer = 0
+saver_key = fjF0Si1HgD
+storage_key = Hl0lNE28Tx
+
