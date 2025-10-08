@@ -70,7 +70,7 @@ local function show(proxy)
 		else
 			if #history > 0 then
 				if is_proxy_popup(get_last_proxy_name()) then
-					transite("fade_in")
+					transite(screens.transition_in)
 					-- clear prev popups + last proxy
 					for i = #history, -1, -1 do
 						local name = history[i]
@@ -82,7 +82,7 @@ local function show(proxy)
 					end
 				else
 					msg.post(last_proxy, screens.MSG_RELEASE_INPUT)
-					transite("fade_in")
+					transite(screens.transition_in)
 					unload(last_proxy)
 				end
 			end
@@ -94,7 +94,7 @@ local function show(proxy)
 		msg.post(last_proxy, screens.MSG_ENABLE)
 		msg.post(last_proxy, screens.MSG_ACQUIRE_INPUT)
 		msg.post(get_last_proxy_url(), screens.MSG_ACQUIRE_INPUT)
-		transite("fade_out")
+		transite(screens.transition_out)
 	end)
 	coroutine.resume(co)
 end
