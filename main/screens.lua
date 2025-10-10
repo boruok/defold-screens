@@ -1,3 +1,4 @@
+local metadata = {}
 local history = {}
 local last_proxy
 local co
@@ -15,6 +16,9 @@ M.MSG_RELEASE_INPUT = hash("release_input_focus")
 M.MSG_LOADED = hash("proxy_loaded")
 M.MSG_SHOW   = hash("show")
 M.MSG_BACK   = hash("back")
+
+M.MSG_POPUP_OPENED = hash("popup_opened")
+M.MSG_POPUP_CLOSED = hash("popup_closed")
 
 M.url_controller = msg.url("main", "/screens", "controller")
 M.url_trasition  = msg.url("main", "/transition", "transition")
@@ -41,14 +45,9 @@ local function is_proxy_listed(proxy)
 	return false
 end
 
----@return string
-local function get_last_proxy_name()
-	return history[#history]
-end
-
 ---@return url
 local function get_last_proxy_url()
-	return msg.url(get_last_proxy_name(), "/go", "gui")
+	return msg.url(history[#history], "/go", history[#history])
 end
 
 ---@param proxy string
@@ -76,7 +75,8 @@ local function load(proxy)
 end
 
 ---@param proxy string
-local function show(proxy)
+---@param meta table|nil
+local function show(proxy, meta)
 	co = coroutine.create(function()
 		local transite = function(animation)
 			if go.exists(M.url_trasition) then
@@ -89,7 +89,7 @@ local function show(proxy)
 			msg.post(get_last_proxy_url(), M.MSG_RELEASE_INPUT)
 		else
 			if #history > 0 then
-				if is_proxy_popup(get_last_proxy_name()) then
+				if is_proxy_popup(history[#history]) then
 					transite(M.transition_in)
 					-- clear prev popups + last proxy
 					for i = #history, -1, -1 do
@@ -97,10 +97,14 @@ local function show(proxy)
 						if name == proxy then
 							break
 						end
+						metadata[proxy] = nil
 						table.remove(history, i)
+
 						unload(get_proxy_url(name))
 					end
 				else
+					metadata[proxy] = nil
+
 					msg.post(last_proxy, M.MSG_RELEASE_INPUT)
 					transite(M.transition_in)
 					unload(last_proxy)
@@ -108,8 +112,13 @@ local function show(proxy)
 			end
 		end
 
+		metadata[proxy] = meta
 		load(proxy)
 		coroutine.yield()
+
+		if is_proxy_popup(proxy) then
+			msg.post(msg.url(history[#history-1], "/go", history[#history-1]), M.MSG_POPUP_OPENED)
+		end
 
 		msg.post(last_proxy, M.MSG_ENABLE)
 		msg.post(last_proxy, M.MSG_ACQUIRE_INPUT)
@@ -119,25 +128,35 @@ local function show(proxy)
 	coroutine.resume(co)
 end
 
-local function back()
-	if is_proxy_popup(get_last_proxy_name()) then
+---@param meta table|nil
+local function back(meta)
+	if is_proxy_popup(history[#history]) then
 		unload(last_proxy)
+
 		table.remove(history, #history)
-		last_proxy = get_proxy_url(get_last_proxy_name())
+		last_proxy = get_proxy_url(history[#history])
 		msg.post(get_last_proxy_url(), M.MSG_ACQUIRE_INPUT)
+		msg.post(get_last_proxy_url(), M.MSG_POPUP_CLOSED, meta)
 	else
 		table.remove(history, #history)
-		show(get_last_proxy_name())
+		show(history[#history], meta)
 	end
 end
 
 ---@param proxy string
-function M.show(proxy)
-	msg.post(M.url_controller, "show", { proxy = proxy })
+---@param meta table|nil
+function M.show(proxy, meta)
+	msg.post(M.url_controller, "show", { proxy = proxy, meta = meta })
 end
 
-function M.back()
-	msg.post(M.url_controller, "back")
+---@param meta table|nil
+function M.back(meta)
+	msg.post(M.url_controller, "back", { meta = meta })
+end
+
+---@param proxy any
+function M.meta(proxy)
+	return metadata[proxy]
 end
 
 function M.on_message(self, message_id, message, sender)
@@ -145,9 +164,9 @@ function M.on_message(self, message_id, message, sender)
 		last_proxy = sender
 		coroutine.resume(co)
 	elseif message_id == M.MSG_SHOW then
-		show(message.proxy)
+		show(message.proxy, message.meta)
 	elseif message_id == M.MSG_BACK then
-		back()
+		back(message.meta)
 	elseif message_id == M.msg_transition_done then
 		coroutine.resume(co)
 	end
