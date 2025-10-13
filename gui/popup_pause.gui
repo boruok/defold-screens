@@ -1,8 +1,4 @@
 script: "/gui/popup_pause.gui_script"
-fonts {
-  name: "default"
-  font: "/builtins/fonts/default.font"
-}
 nodes {
   position {
     x: 180.0
@@ -37,68 +33,78 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
-  size {
-    x: 256.0
-    y: 256.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "window"
   parent: "root"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/window.gui"
 }
 nodes {
-  position {
-    y: -71.0
-  }
-  size {
-    x: 128.0
-    y: 32.0
-  }
-  color {
-    y: 0.0
-    z: 0.0
-  }
   type: TYPE_BOX
-  id: "button_close"
-  parent: "root"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  id: "window/root"
+  parent: "window"
+  template_node_child: true
 }
 nodes {
-  size {
-    x: 200.0
-    y: 100.0
-  }
-  color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
   type: TYPE_TEXT
-  text: "Put your text here"
-  font: "default"
-  id: "text"
-  parent: "root"
-  inherit_alpha: true
+  text: "Pause"
+  id: "window/text_title"
+  parent: "window/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "window/button_close"
+  parent: "window/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "window/button_close/root"
+  parent: "window/button_close"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "window/button_close/text"
+  parent: "window/button_close/root"
+  template_node_child: true
 }
 nodes {
   position {
-    y: -108.0
+    y: -62.0
   }
-  size {
-    x: 128.0
-    y: 32.0
-  }
-  color {
-    x: 0.0
-    z: 0.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "button_menu"
   parent: "root"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  size {
+    x: 128.0
+    y: 32.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "button_menu/root"
+  parent: "button_menu"
+  overridden_fields: 4
+  overridden_fields: 5
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Menu"
+  id: "button_menu/text"
+  parent: "button_menu/root"
+  overridden_fields: 5
+  overridden_fields: 8
+  template_node_child: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

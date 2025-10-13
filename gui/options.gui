@@ -37,7 +37,7 @@ nodes {
 }
 nodes {
   position {
-    x: 180.0
+    x: 181.0
     y: 320.0
   }
   size {
@@ -58,43 +58,83 @@ nodes {
     x: -32.0
     y: -32.0
   }
-  size {
-    x: 48.0
-    y: 48.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "button_back"
   parent: "ANCHOR_TR"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "button_back/root"
+  parent: "button_back"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "B"
+  id: "button_back/text"
+  parent: "button_back/root"
+  overridden_fields: 8
+  template_node_child: true
 }
 nodes {
   position {
-    y: -203.0
+    y: -184.0
   }
-  size {
-    x: 128.0
-    y: 32.0
-  }
-  type: TYPE_BOX
-  id: "button_reset"
-  parent: "root"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    y: -246.0
-  }
-  size {
-    x: 128.0
-    y: 32.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "button_about"
   parent: "root"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  size {
+    x: 128.0
+    y: 48.0
+  }
+  type: TYPE_BOX
+  id: "button_about/root"
+  parent: "button_about"
+  overridden_fields: 4
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "About"
+  id: "button_about/text"
+  parent: "button_about/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -244.0
+  }
+  type: TYPE_TEMPLATE
+  id: "button_reset"
+  parent: "root"
+  inherit_alpha: true
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  size {
+    x: 128.0
+    y: 48.0
+  }
+  type: TYPE_BOX
+  id: "button_reset/root"
+  parent: "button_reset"
+  overridden_fields: 4
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Reset"
+  id: "button_reset/text"
+  parent: "button_reset/root"
+  overridden_fields: 8
+  template_node_child: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

@@ -7,9 +7,9 @@ end
 function on_input(self, action_id, action)
 	if action_id == hash("touch") then
 		if action.pressed and not action.released then
-			if gui.pick_node(gui.get_node("button_yes"), action.x, action.y) then
+			if gui.pick_node(gui.get_node("button_yes/root"), action.x, action.y) then
 				screens.back()
-			elseif gui.pick_node(gui.get_node("button_no"), action.x, action.y) then
+			elseif gui.pick_node(gui.get_node("button_no/root"), action.x, action.y) then
 				screens.back()
 			end
 		end

@@ -1,8 +1,4 @@
 script: "/gui/play.gui_script"
-fonts {
-  name: "default"
-  font: "/builtins/fonts/default.font"
-}
 nodes {
   position {
     x: 180.0
@@ -46,7 +42,7 @@ nodes {
     y: 32.0
   }
   type: TYPE_BOX
-  id: "box"
+  id: "panel"
   parent: "ANCHOR_LT"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
@@ -73,15 +69,25 @@ nodes {
     x: -32.0
     y: -32.0
   }
-  size {
-    x: 48.0
-    y: 48.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "button_pause"
   parent: "ANCHOR_TR"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "button_pause/root"
+  parent: "button_pause"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "P"
+  id: "button_pause/text"
+  parent: "button_pause/root"
+  overridden_fields: 8
+  template_node_child: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

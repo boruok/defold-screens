@@ -3,7 +3,7 @@ local screens = require("main.screens")
 function on_input(self, action_id, action)
 	if action_id == hash("touch") then
 		if action.pressed and not action.released then
-			if gui.pick_node(gui.get_node("button_pause"), action.x, action.y) then
+			if gui.pick_node(gui.get_node("button_pause/root"), action.x, action.y) then
 				screens.show("popup_pause")
 			end
 		end

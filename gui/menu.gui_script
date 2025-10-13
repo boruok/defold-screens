@@ -3,13 +3,13 @@ local screens = require("main.screens")
 function on_input(self, action_id, action)
 	if action_id == hash("touch") then
 		if action.pressed and not action.released then
-			if gui.pick_node(gui.get_node("button_x"), action.x, action.y) then
+			if gui.pick_node(gui.get_node("button_x/root"), action.x, action.y) then
 				sys.open_url("https://www.x.com")
-			elseif gui.pick_node(gui.get_node("button_facebook"), action.x, action.y) then
+			elseif gui.pick_node(gui.get_node("button_facebook/root"), action.x, action.y) then
 				sys.open_url("https://www.facebook.com")
-			elseif gui.pick_node(gui.get_node("button_options"), action.x, action.y) then
+			elseif gui.pick_node(gui.get_node("button_options/root"), action.x, action.y) then
 				screens.show("options")
-			elseif gui.pick_node(gui.get_node("button_play"), action.x, action.y) then
+			elseif gui.pick_node(gui.get_node("button_play/root"), action.x, action.y) then
 				screens.show("play")
 			end
 		end
