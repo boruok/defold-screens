@@ -60,5 +60,11 @@ embedded_instances {
   "  data: \"collection: \\\"/gui/popup_about.collection\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"popup_quit\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/gui/popup_quit.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

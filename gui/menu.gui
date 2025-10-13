@@ -1,8 +1,4 @@
 script: "/gui/menu.gui_script"
-fonts {
-  name: "default"
-  font: "/builtins/fonts/default.font"
-}
 nodes {
   position {
     x: 180.0
@@ -39,33 +35,53 @@ nodes {
 }
 nodes {
   position {
-    x: 35.0
-    y: -31.0
+    x: 32.0
+    y: -32.0
   }
-  size {
-    x: 48.0
-    y: 48.0
-  }
-  type: TYPE_BOX
-  id: "button_x"
-  parent: "ANCHOR_TL"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 92.0
-    y: -31.0
-  }
-  size {
-    x: 48.0
-    y: 48.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "button_facebook"
   parent: "ANCHOR_TL"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "button_facebook/root"
+  parent: "button_facebook"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "F"
+  id: "button_facebook/text"
+  parent: "button_facebook/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 86.0
+    y: -32.0
+  }
+  type: TYPE_TEMPLATE
+  id: "button_x"
+  parent: "ANCHOR_TL"
+  inherit_alpha: true
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "button_x/root"
+  parent: "button_x"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "X"
+  id: "button_x/text"
+  parent: "button_x/root"
+  overridden_fields: 8
+  template_node_child: true
 }
 nodes {
   position {
@@ -90,29 +106,57 @@ nodes {
     x: -32.0
     y: -32.0
   }
-  size {
-    x: 48.0
-    y: 48.0
-  }
-  type: TYPE_BOX
+  type: TYPE_TEMPLATE
   id: "button_options"
   parent: "ANCHOR_TR"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "button_options/root"
+  parent: "button_options"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "O"
+  id: "button_options/text"
+  parent: "button_options/root"
+  overridden_fields: 8
+  template_node_child: true
 }
 nodes {
   position {
-    y: -245.0
+    x: 180.0
+    y: 76.0
   }
+  type: TYPE_TEMPLATE
+  id: "button_play"
+  inherit_alpha: true
+  template: "/gui/templates/button.gui"
+}
+nodes {
   size {
     x: 128.0
     y: 48.0
   }
   type: TYPE_BOX
-  id: "button_play"
-  parent: "root"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  id: "button_play/root"
+  yanchor: YANCHOR_BOTTOM
+  parent: "button_play"
+  overridden_fields: 1
+  overridden_fields: 4
+  overridden_fields: 13
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Play"
+  id: "button_play/text"
+  parent: "button_play/root"
+  overridden_fields: 8
+  template_node_child: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

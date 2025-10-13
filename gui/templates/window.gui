@@ -1,0 +1,71 @@
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  size {
+    x: 256.0
+    y: 256.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 112.0
+  }
+  size {
+    x: 256.0
+    y: 32.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Title"
+  font: "default"
+  id: "text_title"
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -103.0
+  }
+  type: TYPE_TEMPLATE
+  id: "button_close"
+  parent: "root"
+  inherit_alpha: true
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  size {
+    x: 128.0
+    y: 32.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "button_close/root"
+  parent: "button_close"
+  overridden_fields: 4
+  overridden_fields: 5
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Close"
+  id: "button_close/text"
+  parent: "button_close/root"
+  overridden_fields: 5
+  overridden_fields: 8
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

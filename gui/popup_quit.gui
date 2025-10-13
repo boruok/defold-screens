@@ -1,4 +1,4 @@
-script: "/gui/popup_reset.gui_script"
+script: "/gui/popup_quit.gui_script"
 fonts {
   name: "default"
   font: "/builtins/fonts/default.font"
@@ -52,7 +52,7 @@ nodes {
 }
 nodes {
   type: TYPE_TEXT
-  text: "Reset"
+  text: "Quit"
   id: "window/text_title"
   parent: "window/root"
   overridden_fields: 8
@@ -89,7 +89,7 @@ nodes {
     z: 0.0
   }
   type: TYPE_TEXT
-  text: "Are your sure whant to reset?"
+  text: "Are you sure whant to quit?"
   font: "default"
   id: "text"
   parent: "root"
