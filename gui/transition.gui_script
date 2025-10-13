@@ -4,19 +4,19 @@ function init(self)
 	self.box = gui.get_node("box")
 	self.prev_alhpa = gui.get_alpha(self.box)
 
-	gui.set_render_order(screens.transition_render_order)
+	gui.set_render_order(screens.transition.render_order)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == screens.msg_transition_play then
+	if message_id == screens.transition.msg_play then
 		local alpha = 0
 		local easing = gui.EASING_INQUINT
-		if message.animation == screens.transition_in then
+		if message.animation == screens.transition.id_in then
 			alpha = 1
 			easing = gui.EASING_OUTQUINT
 		end
 		gui.animate(self.box, "color.w", alpha, easing, 0.5, 0, function()
-			msg.post(sender, screens.msg_transition_done)
+			msg.post(sender, screens.transition.msg_done)
 			self.prev_alhpa = alpha
 		end)
 	end
