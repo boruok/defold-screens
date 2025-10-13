@@ -34,18 +34,32 @@ nodes {
 }
 nodes {
   position {
-    x: 77.0
+    x: 75.0
     y: -26.0
   }
-  size {
-    x: 128.0
-    y: 32.0
-  }
-  type: TYPE_BOX
-  id: "panel"
+  type: TYPE_TEMPLATE
+  id: "panel_coins"
   parent: "ANCHOR_LT"
   inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
+  template: "/gui/templates/panel.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_coins/root"
+  parent: "panel_coins"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "panel_coins/text"
+  parent: "panel_coins/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_coins/icon"
+  parent: "panel_coins/root"
+  template_node_child: true
 }
 nodes {
   position {

@@ -1,0 +1,54 @@
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  size {
+    x: 128.0
+    y: 32.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 61.0
+  }
+  size {
+    x: 96.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "99999"
+  font: "default"
+  id: "text"
+  pivot: PIVOT_E
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -47.0
+  }
+  size {
+    x: 24.0
+    y: 24.0
+  }
+  color {
+    x: 0.0
+  }
+  type: TYPE_BOX
+  id: "icon"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
