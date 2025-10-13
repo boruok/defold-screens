@@ -1,0 +1,171 @@
+script: "/gui/popup_quit.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 180.0
+    y: 320.0
+  }
+  size {
+    x: 360.0
+    y: 640.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 360.0
+    y: 640.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "bg"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  inherit_alpha: true
+  alpha: 0.25
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "window"
+  parent: "root"
+  inherit_alpha: true
+  template: "/gui/templates/window.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "window/root"
+  parent: "window"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Quit"
+  id: "window/text_title"
+  parent: "window/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "window/button_close"
+  parent: "window/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "window/button_close/root"
+  parent: "window/button_close"
+  overridden_fields: 45
+  template_node_child: true
+  enabled: false
+}
+nodes {
+  type: TYPE_TEXT
+  id: "window/button_close/text"
+  parent: "window/button_close/root"
+  template_node_child: true
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Are you sure whant to quit?"
+  font: "default"
+  id: "text"
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -55.0
+    y: -99.0
+  }
+  type: TYPE_TEMPLATE
+  id: "button_yes"
+  parent: "root"
+  inherit_alpha: true
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  size {
+    x: 80.0
+    y: 32.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "button_yes/root"
+  parent: "button_yes"
+  overridden_fields: 4
+  overridden_fields: 5
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Yes"
+  id: "button_yes/text"
+  parent: "button_yes/root"
+  overridden_fields: 5
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 57.0
+    y: -99.0
+  }
+  type: TYPE_TEMPLATE
+  id: "button_no"
+  parent: "root"
+  inherit_alpha: true
+  template: "/gui/templates/button.gui"
+}
+nodes {
+  size {
+    x: 80.0
+    y: 32.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "button_no/root"
+  parent: "button_no"
+  overridden_fields: 4
+  overridden_fields: 5
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "No"
+  id: "button_no/text"
+  parent: "button_no/root"
+  overridden_fields: 5
+  overridden_fields: 8
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
