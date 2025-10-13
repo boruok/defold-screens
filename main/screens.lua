@@ -21,12 +21,14 @@ M.MSG_POPUP_OPENED = hash("popup_opened")
 M.MSG_POPUP_CLOSED = hash("popup_closed")
 
 M.url_controller = msg.url("main", "/screens", "controller")
-M.url_trasition  = msg.url("main", "/transition", "transition")
-M.msg_transition_play = hash("transition_play")
-M.msg_transition_done = hash("transition_done")
-M.transition_in  = "fade_in"
-M.transition_out = "fade_out"
-M.transition_render_order = 2
+M.transition = {
+	url  = msg.url("main", "/transition", "transition"),
+	msg_play = hash("transition_play"),
+	msg_done = hash("transition_done"),
+	id_in  = "fade_in",
+	id_out = "fade_out",
+	render_order = 2,
+}
 
 ---@param proxy string
 ---@return boolean
@@ -79,8 +81,8 @@ end
 local function show(proxy, meta)
 	co = coroutine.create(function()
 		local transite = function(animation)
-			if go.exists(M.url_trasition) then
-				msg.post(M.url_trasition, M.msg_transition_play, { animation = animation })
+			if go.exists(M.transition.url) then
+				msg.post(M.transition.url, M.transition.msg_play, { animation = animation })
 				coroutine.yield()
 			end
 		end
@@ -90,7 +92,7 @@ local function show(proxy, meta)
 		else
 			if #history > 0 then
 				if is_proxy_popup(history[#history]) then
-					transite(M.transition_in)
+					transite(M.transition.id_in)
 					-- clear prev popups + last proxy
 					for i = #history, -1, -1 do
 						local name = history[i]
@@ -106,7 +108,7 @@ local function show(proxy, meta)
 					metadata[proxy] = nil
 
 					msg.post(last_proxy, M.MSG_RELEASE_INPUT)
-					transite(M.transition_in)
+					transite(M.transition.id_in)
 					unload(last_proxy)
 				end
 			end
@@ -123,8 +125,9 @@ local function show(proxy, meta)
 		msg.post(last_proxy, M.MSG_ENABLE)
 		msg.post(last_proxy, M.MSG_ACQUIRE_INPUT)
 		msg.post(get_last_proxy_url(), M.MSG_ACQUIRE_INPUT)
-		transite(M.transition_out)
+		transite(M.transition.id_out)
 	end)
+
 	coroutine.resume(co)
 end
 
@@ -167,7 +170,7 @@ function M.on_message(self, message_id, message, sender)
 		show(message.proxy, message.meta)
 	elseif message_id == M.MSG_BACK then
 		back(message.meta)
-	elseif message_id == M.msg_transition_done then
+	elseif message_id == M.transition.msg_done then
 		coroutine.resume(co)
 	end
 end
